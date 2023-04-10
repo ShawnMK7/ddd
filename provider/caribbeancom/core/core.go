@@ -94,7 +94,7 @@ func (core *Core) GetMovieInfoByURL(rawURL string) (info *model.MovieInfo, err e
 	// Fields
 	c.OnXML(`//*[@id="moviepages"]//li`, func(e *colly.XMLElement) {
 		switch e.ChildText(`.//span[1]`) {
-		case "鍑烘紨":
+		case "出演":
 			var actors []string
 			parser.ParseTexts(htmlquery.FindOne(e.DOM.(*html.Node), `.//span[2]`), &actors)
 			for _, actor := range actors {
@@ -102,18 +102,18 @@ func (core *Core) GetMovieInfoByURL(rawURL string) (info *model.MovieInfo, err e
 					info.Actors = append(info.Actors, actor)
 				}
 			}
-		case "閰嶄俊鏃?, "璨╁２鏃?:
+		case "配信日", "販売日":
 			info.ReleaseDate = parser.ParseDate(e.ChildText(`.//span[2]`))
-		case "鍐嶇敓鏅傞枔":
+		case "再生時間":
 			info.Runtime = parser.ParseRuntime(e.ChildText(`.//span[2]`))
-		case "銈枫儶銉笺偤":
+		case "シリーズ":
 			info.Series = e.ChildText(`.//span[2]/a[1]`)
-		case "銈广偪銈搞偑":
+		case "スタジオ":
 			info.Maker /* studio */ = e.ChildText(`.//span[2]/a[1]`)
-		case "銈裤偘":
+		case "タグ":
 			parser.ParseTexts(htmlquery.FindOne(e.DOM.(*html.Node), `.//span[2]`),
 				(*[]string)(&info.Genres))
-		case "銉︺兗銈躲兗瑭曚尽":
+		case "ユーザー評価":
 			info.Score = float64(utf8.RuneCountInString(
 				strings.TrimSpace(e.ChildText(`.//span[2]`))))
 		}
