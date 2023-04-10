@@ -13,11 +13,11 @@ func main() {
 	// Allocate app engine with request timeout set to one minute.
 	app := engine.Default()
 
-	// Search actor named `銇层仾銇熴伨銈娿倱` from Xs/List with fallback enabled.
-	app.SearchActor("銇层仾銇熴伨銈娿倱", xslist.Name, true)
+	// Search actor named `ひなたまりん` from Xs/List with fallback enabled.
+	app.SearchActor("ひなたまりん", xslist.Name, true)
 
-	// Search actor named `涓€銉庣€倐銈俙 from all available providers with fallback enabled.
-	app.SearchActorAll("涓€銉庣€倐銈?, true)
+	// Search actor named `一ノ瀬もも` from all available providers with fallback enabled.
+	app.SearchActorAll("一ノ瀬もも", true)
 
 	// Search movie named `ABP-330` from JavBus with fallback enabled.
 	app.SearchMovie("ABP-330", javbus.Name, true)
