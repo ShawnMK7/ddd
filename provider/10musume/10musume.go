@@ -42,7 +42,7 @@ func New() *TenMusume {
 			SampleVideoURL:    sampleVideoURL,
 			DefaultName:       Name,
 			DefaultPriority:   Priority,
-			DefaultMaker:      "澶╃劧銈€銇欍倎",
+			DefaultMaker:      "天然むすめ",
 			GalleryPath:       galleryPath,
 			LegacyGalleryPath: legacyGalleryPath,
 		}).Init(),
